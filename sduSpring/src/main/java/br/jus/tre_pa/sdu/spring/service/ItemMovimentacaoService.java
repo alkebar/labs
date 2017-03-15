@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.List;
 import br.jus.tre_pa.sdu.spring.domain.ItemMovimentacao;
 import br.jus.tre_pa.sdu.spring.repository.ItemMovimentacaoRepository;
+import java.util.List;
 
 @Service
 public class ItemMovimentacaoService {
@@ -50,7 +50,6 @@ public class ItemMovimentacaoService {
 
 	private void updateAttributes(ItemMovimentacao itemMovimentacao, ItemMovimentacao newItemMovimentacao) {
 		itemMovimentacao.setQtdEmUnidades(newItemMovimentacao.getQtdEmUnidades());
-		itemMovimentacao.setMaterial(newItemMovimentacao.getMaterial());
 	}
 
 }

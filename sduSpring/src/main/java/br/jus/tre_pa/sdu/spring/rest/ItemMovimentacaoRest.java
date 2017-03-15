@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 import br.jus.tre_pa.sdu.spring.domain.ItemMovimentacao;
 import br.jus.tre_pa.sdu.spring.service.ItemMovimentacaoService;
 
@@ -27,7 +26,7 @@ public class ItemMovimentacaoRest {
 	 * Endpoint para buscar todas as instâncias de ItemMovimentacao.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/itemMovimentacaos")
+	@RequestMapping(method = RequestMethod.GET, path = "/api/itemMovimentacoes")
 	public ResponseEntity<?> findAll(Pageable pageable) {
 		log.debug("[findAll] Requisição para buscar todos itemMovimentacaos");
 		Page<ItemMovimentacao> itemMovimentacaos = itemMovimentacaoService.findAll(pageable);
@@ -39,7 +38,7 @@ public class ItemMovimentacaoRest {
 	 * Endpoint para buscar 1 (uma) instância de ItemMovimentacao.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/itemMovimentacaos/{id}")
+	@RequestMapping(method = RequestMethod.GET, path = "/api/itemMovimentacoes/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Long id) {
 		log.debug("[find] Requisição para buscar itemMovimentacao. id={}", id);
 		boolean exists = itemMovimentacaoService.exists(id);
@@ -55,7 +54,7 @@ public class ItemMovimentacaoRest {
 	 * Endpoint para deleção de ItemMovimentacao.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.DELETE, path = "/api/itemMovimentacaos/{id}")
+	@RequestMapping(method = RequestMethod.DELETE, path = "/api/itemMovimentacoes/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		log.debug("[delete] Requisição para deletar itemMovimentacao. id={}", id);
 		boolean exists = itemMovimentacaoService.exists(id);
@@ -73,7 +72,7 @@ public class ItemMovimentacaoRest {
 	 * Endpoint para inserção de ItemMovimentacao.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.POST, path = "/api/itemMovimentacaos")
+	@RequestMapping(method = RequestMethod.POST, path = "/api/itemMovimentacoes")
 	public ResponseEntity<?> insert(@RequestBody ItemMovimentacao itemMovimentacao) {
 		log.debug("[insert] Requisição para inserir itemMovimentacao...");
 		ItemMovimentacao insertedItemMovimentacao = itemMovimentacaoService.insert(itemMovimentacao);
@@ -85,7 +84,7 @@ public class ItemMovimentacaoRest {
 	 * Endpoint para atualização de ItemMovimentacao.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.PUT, path = "/api/itemMovimentacaos/{id}")
+	@RequestMapping(method = RequestMethod.PUT, path = "/api/itemMovimentacoes/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody ItemMovimentacao itemMovimentacao) {
 		log.debug("[update] Requisição para atualizar de itemMovimentacao...");
 		boolean exists = itemMovimentacaoService.exists(id);

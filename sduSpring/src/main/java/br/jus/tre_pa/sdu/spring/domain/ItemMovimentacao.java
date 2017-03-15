@@ -14,6 +14,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ITEM_MOVIMENTACAO")
 public class ItemMovimentacao implements Serializable {
@@ -39,6 +42,7 @@ public class ItemMovimentacao implements Serializable {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "MATERIAL_ID")
+	@JsonIgnore
 	private Material material;
 
 

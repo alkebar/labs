@@ -20,6 +20,8 @@ import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "MATERIAL")
 public class Material implements Serializable {
@@ -70,7 +72,7 @@ public class Material implements Serializable {
 	/**
 	 * 
 	 */
-	@Column
+	@Column//(name = "VALORUNITARIO")
 	private BigDecimal valorUnitario;
 
 	/**
@@ -82,7 +84,7 @@ public class Material implements Serializable {
 	/**
 	 * 
 	 */
-	@Column
+	@Column//(name="ORDEMRELEVANCIA")
 	private Integer ordemRelevancia;
 
 
@@ -193,9 +195,10 @@ public class Material implements Serializable {
 	public void setMaterialType(MaterialType materialType) {
 		this.materialType = materialType;
 	}
-	public MaterialType[] getMaterialTypeArray(){
+	
+	/*public MaterialType[] getMaterialTypeArray(){
 		return MaterialType.values();
-	}
+	}*/
 
 	@Override
 	public int hashCode() {

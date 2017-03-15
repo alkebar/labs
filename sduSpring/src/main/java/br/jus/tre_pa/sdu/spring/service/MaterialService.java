@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.List;
 import br.jus.tre_pa.sdu.spring.domain.Material;
 import br.jus.tre_pa.sdu.spring.repository.MaterialRepository;
+import java.util.List;
 import br.jus.tre_pa.sdu.spring.domain.ItemMovimentacao;
 import br.jus.tre_pa.sdu.spring.repository.ItemMovimentacaoRepository;	
 
@@ -18,8 +18,7 @@ public class MaterialService {
 	private MaterialRepository materialRepository;
 
 	@Autowired
-	private ItemMovimentacaoRepository itemMovimentacaRepository;	
-		
+	private ItemMovimentacaoRepository itemMovimentacaoRepository;	
 
 	public Page<Material> findAll(Pageable pageable) {
 		return materialRepository.findAll(pageable);
@@ -28,7 +27,6 @@ public class MaterialService {
 	public List<ItemMovimentacao> findItemMovimentacao(Long id) {
 		return materialRepository.findItemMovimentacao(id);
 	}
-
 
 	public Material findOne(Long id) {
 		return materialRepository.findOne(id);
@@ -58,13 +56,26 @@ public class MaterialService {
 	}
 
 	private void updateAttributes(Material material, Material newMaterial) {
-		material.setNome(newMaterial.getNome());
 		material.setOrdemRelevancia(newMaterial.getOrdemRelevancia());
-		material.setMaterialType(newMaterial.getMaterialType());
 		material.setPeso(newMaterial.getPeso());
-		material.setDescricao(newMaterial.getDescricao());
 		material.setValorUnitario(newMaterial.getValorUnitario());
-		newMaterial.getItemMovimentacao().stream().forEach(itemMovimentaca -> material.getItemMovimentacao().add(itemMovimentacaRepository.findOne(itemMovimentaca.getId())));		
+		material.setMaterialType(newMaterial.getMaterialType());
+		material.setNome(newMaterial.getNome());
+		material.setDescricao(newMaterial.getDescricao());
+		updateItemMovimentacao(material, newMaterial);	
 	}
-
+			
+	/**
+	 * Atualiza o associação bidirecional OneToMany entre Material e ItemMovimentacao
+	 * 
+	 */
+	private void updateItemMovimentacao(Material material, Material newMaterial) {
+		// @formatter:off
+		newMaterial.getItemMovimentacao().stream()
+			.forEach(itemMovimentacao -> {
+				material.getItemMovimentacao().add(itemMovimentacaoRepository.findOne(itemMovimentacao.getId()));
+				itemMovimentacao.setMaterial(material);
+			});
+		// @formatter:on				
+	}
 }

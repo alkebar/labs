@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 import br.jus.tre_pa.sdu.spring.domain.Material;
-import br.jus.tre_pa.sdu.spring.domain.ItemMovimentacao;     
+import br.jus.tre_pa.sdu.spring.domain.ItemMovimentacao;  
 import br.jus.tre_pa.sdu.spring.service.MaterialService;
 
 @RestController
@@ -28,28 +27,19 @@ public class MaterialRest {
 	 * Endpoint para buscar todas as instâncias de Material.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/materials")
+	@RequestMapping(method = RequestMethod.GET, path = "/api/materiais")
 	public ResponseEntity<?> findAll(Pageable pageable) {
 		log.debug("[findAll] Requisição para buscar todos materials");
 		Page<Material> materials = materialService.findAll(pageable);
 		return ResponseEntity.ok(materials);
 	}
 
-	/**
-	 * Endpoint para buscar as instâncias de ItemMovimentacao em Material.
-	 *
-	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/materials/{id}/itemMovimentacao")
-	public ResponseEntity<?> findItemMovimentacao(@PathVariable("id") Long id) {
-		List<ItemMovimentacao> itemMovimentacao = materialService.findItemMovimentacao(id);
-		return ResponseEntity.ok(itemMovimentacao);
-	}
 
 	/**
 	 * Endpoint para buscar 1 (uma) instância de Material.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.GET, path = "/api/materials/{id}")
+	@RequestMapping(method = RequestMethod.GET, path = "/api/materiais/{id}")
 	public ResponseEntity<?> find(@PathVariable("id") Long id) {
 		log.debug("[find] Requisição para buscar material. id={}", id);
 		boolean exists = materialService.exists(id);
@@ -65,7 +55,7 @@ public class MaterialRest {
 	 * Endpoint para deleção de Material.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.DELETE, path = "/api/materials/{id}")
+	@RequestMapping(method = RequestMethod.DELETE, path = "/api/materiais/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		log.debug("[delete] Requisição para deletar material. id={}", id);
 		boolean exists = materialService.exists(id);
@@ -83,7 +73,7 @@ public class MaterialRest {
 	 * Endpoint para inserção de Material.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.POST, path = "/api/materials")
+	@RequestMapping(method = RequestMethod.POST, path = "/api/materiais")
 	public ResponseEntity<?> insert(@RequestBody Material material) {
 		log.debug("[insert] Requisição para inserir material...");
 		Material insertedMaterial = materialService.insert(material);
@@ -95,7 +85,7 @@ public class MaterialRest {
 	 * Endpoint para atualização de Material.
 	 *
 	 */
-	@RequestMapping(method = RequestMethod.PUT, path = "/api/materials/{id}")
+	@RequestMapping(method = RequestMethod.PUT, path = "/api/materiais/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Material material) {
 		log.debug("[update] Requisição para atualizar de material...");
 		boolean exists = materialService.exists(id);
