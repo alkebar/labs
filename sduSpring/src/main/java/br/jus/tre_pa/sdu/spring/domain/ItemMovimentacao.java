@@ -42,7 +42,7 @@ public class ItemMovimentacao implements Serializable {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "MATERIAL_ID")
-	@JsonIgnore
+	//@JsonIgnore
 	private Material material;
 
 

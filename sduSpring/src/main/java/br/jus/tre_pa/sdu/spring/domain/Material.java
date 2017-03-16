@@ -179,7 +179,7 @@ public class Material implements Serializable {
 
 
 
-
+	@JsonIgnore
 	public List<ItemMovimentacao> getItemMovimentacao() {
 		return itemMovimentacao;
 	}
