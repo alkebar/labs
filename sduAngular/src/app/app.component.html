@@ -1,2 +1,33 @@
 
-<router-outlet></router-outlet>
+<router-outlet>
+</router-outlet>
+
+<!-- FAB Buttons -->
+<button md-fab color="primary">
+  <md-icon>add</md-icon>
+</button>
+<button md-mini-fab color="accent">
+  <md-icon>add</md-icon>
+</button>
+<!--
+<ul>
+    <li *ngFor="let material of materiais" >
+        {{material.nome}}
+    </li>
+</ul>
+!-->
+<md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+      <md-card-title>Logs</md-card-title>
+      <md-divider></md-divider>
+    <template tdLoading="materiais.load" >
+            <td-data-table [data]="materiais" 
+            [columns]="columns">
+                <template tdDataTableTemplate="type" let-value="value" let-row="row" let-column="column">
+                    <div layout="row">
+                        <span flex>{{value}}</span> // or <span flex>{{row[column]}}</span>
+                        <md-icon>star</md-icon>
+                    </div>
+                </template>
+            </td-data-table>
+    </template>
+</md-card>

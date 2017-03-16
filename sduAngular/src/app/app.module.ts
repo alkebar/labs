@@ -1,3 +1,4 @@
+import { MaterialService } from './service/material.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -28,7 +29,7 @@ import { UserModule } from './view/user/user.module';
     UserModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MaterialService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
