@@ -1,25 +1,21 @@
 import { Page } from './domain/page';
 import { MaterialService } from './service/material.service';
 import { Material } from './domain/material';
-import { Component, ViewContainerRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewContainerRef, AfterViewInit, OnInit, AfterContentInit } from '@angular/core';
 import { MdIconRegistry } from '@angular/material'
 import { DomSanitizer } from '@angular/platform-browser'
-import { TdDialogService, TdLoadingService, LoadingType, ILoadingOptions, ITdDataTableColumn } from '@covalent/core';
+import { TdDialogService, TdLoadingService, LoadingType, ILoadingOptions, ITdDataTableColumn, TdMediaService } from '@covalent/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit, OnInit {
 
     title = 'app works!';
 
-    //items: Object[];
-
-    page: Page<Material>;
-
-    materiais: Material[];
+    page: Page<Material> = new Page<Material>();
 
     columns: ITdDataTableColumn[] = [
         { name: 'id', label: 'Id' },
@@ -32,19 +28,19 @@ export class AppComponent implements OnInit {
     ];
 
     constructor(private materialService: MaterialService,
-                private loadingService: TdLoadingService) {
+        private loadingService: TdLoadingService,
+        public media: TdMediaService) {
     }
 
     ngOnInit(): void {
-        this.loadingService.register('materiais.load');
+        this.findAll();
+    }
+
+    ngAfterViewInit(): void {
+    }
+
+    findAll() {
         this.materialService.getMaterial()
-            .subscribe(page => {
-                
-                    this.page = page
-                    console.log(this.page);
-                    this.materiais = page.content;
-                    this.loadingService.resolve('materiais.load');
-               
-            });
+            .subscribe((page: Page<Material>) => this.page = page );
     }
 }

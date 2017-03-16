@@ -1,4 +1,4 @@
-export interface Page<T> {
+export class Page<T> {
     last: boolean;
     totalElements: number;
     totalPages: number;
@@ -7,5 +7,5 @@ export interface Page<T> {
     numberOfElements: number;
     size: number;
     number: number;
-    content: T[];
+    content: T[] = [];
 }
