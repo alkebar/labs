@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import br.jus.tre_pa.sdu.spring.domain.ItemMovimentacao;
 import br.jus.tre_pa.sdu.spring.service.ItemMovimentacaoService;
 
 @RestController
+@CrossOrigin
 public class ItemMovimentacaoRest {
 
 	private Logger log = LoggerFactory.getLogger(ItemMovimentacaoRest.class);
