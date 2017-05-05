@@ -70,12 +70,6 @@ public class MaterialService {
 	 * 
 	 */
 	private void updateItemMovimentacao(Material material, Material newMaterial) {
-		// @formatter:off
-		newMaterial.getItemMovimentacao().stream()
-			.forEach(itemMovimentacao -> {
-				material.getItemMovimentacao().add(itemMovimentacaoRepository.findOne(itemMovimentacao.getId()));
-				itemMovimentacao.setMaterial(material);
-			});
-		// @formatter:on				
+		materialRepository.save(material);			
 	}
 }

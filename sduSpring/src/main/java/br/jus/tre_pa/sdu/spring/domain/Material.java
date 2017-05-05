@@ -72,7 +72,7 @@ public class Material implements Serializable {
 	/**
 	 * 
 	 */
-	@Column//(name = "VALORUNITARIO")
+	@Column
 	private BigDecimal valorUnitario;
 
 	/**
@@ -84,7 +84,7 @@ public class Material implements Serializable {
 	/**
 	 * 
 	 */
-	@Column//(name="ORDEMRELEVANCIA")
+	@Column
 	private Integer ordemRelevancia;
 
 
