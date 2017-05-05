@@ -33,25 +33,29 @@
     <td-expansion-panel label="label" sublabel="sublabel">
       <ng-template td-expansion-panel-header>
         <div layout="row" class="bgc-blue-400 pad-sm" flex>
-          <span class="md-headline" style="color: aliceblue">Adicionar Material</span>
+          <span class="md-headline" style="color: aliceblue">Adicionar Item</span>
           <span flex></span>
         </div>
       </ng-template>
-      <ng-template td-expansion-panel-label>
-        ... add label content (if not used, falls back to [label] input)
-      </ng-template>
-      <ng-template td-expansion-panel-sublabel>
-        ... add sublabel content (if not used, falls back to [sublabel] input)
-      </ng-template>
       <div layout="column" layout-gt-xs="row">
         <div flex-gt-xs="50" layout="column">
-          
+                <!-- Nome -->
+
+                <md-select flex placeholder="Tipo de Material" [(ngModel)]="novoItemMovimentacao.material.nome" name="materialTipo">
+                    <md-option *ngFor="let tipo of page.content" [value]="tipo.nome">
+                        {{tipo.nome}}
+                    </md-option>
+                </md-select>
+                <!-- QTD -->
+                <md-input-container flex>
+                    <input mdInput placeholder="Quantidade" [(ngModel)]="novoItemMovimentacao.qtdEmUnidades" name="materialPeso">
+                </md-input-container>
 
          
           <!-- AÇÕES -->
           <md-divider></md-divider>
           <div>
-            <button md-button color="accent" class="text-upper" (click)="salvar()">Adicionar</button>
+            <button md-button color="accent" class="text-upper" (click)="addItem()">Adicionar</button>
             <button md-button class="text-upper" (click)="cancelar()">Cancelar</button>
           </div>
         </div>
@@ -68,7 +72,6 @@
           <md-icon md-list-avatar>border_all</md-icon>
           <h3 md-line> {{item.material.nome}} </h3>
           <h4 md-line> {{item.qtdEmUnidades}} </h4>
-          <p md-line> {{item.qtdEmUnidades}} </p>
         </md-list-item>
 
       </ng-template>

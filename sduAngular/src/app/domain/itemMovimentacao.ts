@@ -4,7 +4,7 @@ export class ItemMovimentacao {
     
     id: number;
     qtdEmUnidades: number;
-    material: Material[] = [];
+    material: Material = new Material();
     
       constructor(){
     }

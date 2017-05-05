@@ -22,6 +22,18 @@ export class MovimentacaoService {
       .map(res => res.json());
   }
 
+ addMovimentacao(movimentacao){
+    return this.http.post(this.url, movimentacao)
+      .map(res => <Movimentacao>res.json());
+  }
 
+  updateMovimentacao(movimentacao){
+    return this.http.put(this.getMovimentacaoUrl(movimentacao.id), movimentacao)
+      .map(res => <Movimentacao>res.json());
+  }
+
+  private getMovimentacaoUrl(id){
+    return this.url + "/" + id;
+  }
 
 }
