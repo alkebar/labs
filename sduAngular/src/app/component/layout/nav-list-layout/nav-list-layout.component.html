@@ -1,0 +1,70 @@
+<td-layout-nav-list #navList toolbarTitle="SDU" [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'over'"
+  [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '350px' : '100%'">
+
+
+  <md-nav-list dense td-sidenav-content (click)="!media.query('gt-sm') && navList.close()">
+    <ng-content select="[sidenav]"></ng-content>
+    <a md-list-item routerLinkActive="active" [routerLink]="['/movimentacoes/list']">
+      <md-icon md-list-avatar>view_compact</md-icon>
+      <h3 md-line>Movimentações</h3>
+      <p md-line> Materiais que entram no estoque </p>
+    </a>
+
+
+    <md-divider md-inset></md-divider>
+    <!-- BOTÃO MATERIAIS -->
+    <a md-list-item  routerLinkActive="active" [routerLink]="['/materiais/list']">
+      <md-icon md-list-avatar>dashboard</md-icon>
+      <h3 md-line> Materiais</h3>
+      <p md-line> Cadastro de Materiais </p>
+      <td-notification-count color="accent" [notifications]="materialCount">
+      </td-notification-count>
+    </a>
+    <!-- BOTÃO LOCAIS -->
+    <md-divider md-inset></md-divider>
+    <a md-list-item routerLinkActive="active" [routerLink]="['/locais/list']">
+      <md-icon md-list-avatar>home</md-icon>
+      <h3 md-line> Locais</h3>
+      <p md-line> Locais de Entrada/Saída de Materiais </p>
+      <td-notification-count color="accent" [notifications]="localCount">
+      </td-notification-count>
+    </a>
+
+  </md-nav-list>
+  <div td-toolbar-content layout="row" flex>
+    <span></span>
+    <span flex></span>
+  </div>
+
+  <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+
+    <md-card-title>
+      <div layout="row" layout-align="space-between center">
+        {{ formTitle }}
+        <ng-content select="[title-option]">
+
+        </ng-content>
+      </div>
+    </md-card-title>
+    <md-card-subtitle>
+      <ng-content select="[subtitle-card]">
+
+      </ng-content>
+    </md-card-subtitle>
+    <md-divider></md-divider>
+
+    <md-card-content>
+      <ng-content select="[main-content]">
+
+      </ng-content>
+    </md-card-content>
+
+    <md-card-actions>
+      <ng-content select="[action-content]">
+
+      </ng-content>
+
+    </md-card-actions>
+  </md-card>
+
+</td-layout-nav-list>

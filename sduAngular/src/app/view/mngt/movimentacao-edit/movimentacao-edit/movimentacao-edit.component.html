@@ -1,0 +1,84 @@
+<nav-list-layout [formTitle]="title">
+
+  <div subtitle-card>
+    <!-- {{movimentacao.codMovimentacao}} -->
+  </div>
+
+  <div main-content>
+
+    <div flex-gt-xs="50" layout="column" layout-gt-xs="row">
+      <div flex-gt-xs="50" layout="column">
+        <span class="md-subhead">Movimentacao - {{movimentacao.codMovimentacao}}</span>
+        <!-- Local de Origem -->
+        <md-input-container flex>
+          <input mdInput placeholder="Origem" [(ngModel)]="movimentacao.localOrigem.nome" name="origemNome">
+        </md-input-container>
+        <!-- Local de Destino -->
+        <md-input-container flex>
+          <input mdInput placeholder="Destino" [(ngModel)]="movimentacao.localDestino.nome" name="destinoNome">
+        </md-input-container>
+
+        <!-- Data -->
+        <md-input-container flex>
+          <input mdInput placeholder="Data" [(ngModel)]="movimentacao.dtMovimentacao" name="dataMovimentacao">
+        </md-input-container>
+      </div>
+
+    </div>
+
+
+
+    <md-divider></md-divider>
+    <!--Adicionar Material-->
+    <td-expansion-panel label="label" sublabel="sublabel">
+      <ng-template td-expansion-panel-header>
+        <div layout="row" class="bgc-blue-400 pad-sm" flex>
+          <span class="md-headline" style="color: aliceblue">Adicionar Material</span>
+          <span flex></span>
+        </div>
+      </ng-template>
+      <ng-template td-expansion-panel-label>
+        ... add label content (if not used, falls back to [label] input)
+      </ng-template>
+      <ng-template td-expansion-panel-sublabel>
+        ... add sublabel content (if not used, falls back to [sublabel] input)
+      </ng-template>
+      <div layout="column" layout-gt-xs="row">
+        <div flex-gt-xs="50" layout="column">
+          
+
+         
+          <!-- AÇÕES -->
+          <md-divider></md-divider>
+          <div>
+            <button md-button color="accent" class="text-upper" (click)="salvar()">Adicionar</button>
+            <button md-button class="text-upper" (click)="cancelar()">Cancelar</button>
+          </div>
+        </div>
+
+      </div>
+    </td-expansion-panel>
+
+    <md-divider></md-divider>
+    <!--Listagem de Materiais-->
+    <md-list>
+      <h2>Materiais</h2>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="movimentacao.itensMovimentacao">
+        <md-list-item>
+          <md-icon md-list-avatar>border_all</md-icon>
+          <h3 md-line> {{item.material.nome}} </h3>
+          <h4 md-line> {{item.qtdEmUnidades}} </h4>
+          <p md-line> {{item.qtdEmUnidades}} </p>
+        </md-list-item>
+
+      </ng-template>
+    </md-list>
+  </div>
+  <div action-content>
+        <!-- AÇÕES -->
+        <md-divider></md-divider>
+        <button md-button color="accent" class="text-upper" (click)="salvar()">Salvar</button>
+        <button md-button class="text-upper" (click)="cancelar()">Cancelar</button>
+    </div>
+
+</nav-list-layout>

@@ -1,0 +1,33 @@
+<nav-list-layout formTitle="Listagem de Movimentações" menu="movimentacao">
+ 
+  <!-- Listagem das Locais -->
+  <div main-content>
+
+    <td-data-table [data]="page.content" [columns]="columns"  >
+      <ng-template tdDataTableTemplate="dtMovimentacao" let-value="value" let-row="row" let-column="column">
+        <div layout="row">
+          <span flex>{{value}}</span>
+          <!-- OPÇÕES -->
+          <td td-data-table-cell style="width: 1px">
+            <span>
+               <button md-icon-button [md-menu-trigger-for]="menu">
+                  <md-icon>more_vert</md-icon>
+                </button>
+                <md-menu x-position="after" #menu="mdMenu">
+                 <a  md-menu-item [routerLink]="['/movimentacoes/edit/' + row.id]">Editar</a>
+                 </md-menu>
+            </span>
+
+          </td>
+        </div>
+      </ng-template>
+    </td-data-table>
+
+
+  </div>
+
+  <div sidenav>
+    
+  </div>
+
+</nav-list-layout>

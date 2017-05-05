@@ -1,0 +1,34 @@
+<nav-list-layout formTitle="Listagem de Materiais">
+
+  <!-- Listagem das Vistorias -->
+  <div main-content>
+
+    <td-data-table [data]="page.content" [columns]="columns">
+      <ng-template tdDataTableTemplate="materialType" let-value="value" let-row="row" let-column="column">
+        <div layout="row">
+          <span flex>{{value}}</span>
+          <!-- OPÇÕES -->
+          <td td-data-table-cell style="width: 1px">
+            <span>
+               <button md-icon-button [md-menu-trigger-for]="menu">
+                  <md-icon>more_vert</md-icon>
+                </button>
+                <md-menu x-position="after" #menu="mdMenu">
+                 <a  md-menu-item [routerLink]="['/materiais/edit/' + row.id]">Editar</a>
+                  <button  md-menu-item (click)="deleteMaterial(row.id)">Excluir</button>
+                 </md-menu>
+
+
+            </span>
+
+          </td>
+        </div>
+      </ng-template>
+    </td-data-table>
+  </div>
+  <div action-content>
+    <!-- AÇÕES -->
+    <md-divider></md-divider>
+    <button md-button color="accent" class="text-upper" [routerLink]="['/materiais/edit/']">Novo</button>
+  </div>
+</nav-list-layout>

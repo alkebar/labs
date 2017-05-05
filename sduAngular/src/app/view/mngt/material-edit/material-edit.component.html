@@ -1,0 +1,45 @@
+<nav-list-layout [formTitle]="title">
+    <div subtitle-card>
+        {{material.nome}}
+    </div>
+
+    <div main-content>
+        <!-- Material -->
+        <div flex-gt-xs="50" layout="column" layout-gt-xs="row">
+            <div flex-gt-xs="50" layout="column">
+                <span class="md-subhead">Material</span>
+                <!-- Nome -->
+                <md-input-container flex>
+                    <input mdInput placeholder="Nome" [(ngModel)]="material.nome" name="materialNome">
+                </md-input-container>
+
+                <md-input-container flex>
+                    <input mdInput placeholder="Peso" [(ngModel)]="material.peso" name="materialPeso">
+                </md-input-container>
+
+                <md-input-container flex>
+                    <input mdInput placeholder="Valor Unitário" [(ngModel)]="material.valorUnitario" name="materialValorUnitario">
+                </md-input-container>
+
+
+                <!-- Select TIPO de Material -->
+                <md-select flex placeholder="Tipo de Material" [(ngModel)]="material.materialType" name="materialTipo">
+                    <md-option *ngFor="let tipo of getMAterialType()" [value]="tipo.value">
+                        {{tipo.label}}
+                    </md-option>
+                </md-select>
+            
+
+            </div>
+        </div>
+    </div>
+    <!-- Fim main-content -->
+
+    <div action-content>
+        <!-- AÇÕES -->
+        <md-divider></md-divider>
+        <button md-button color="accent" class="text-upper" (click)="salvar()">Salvar</button>
+        <button md-button class="text-upper" (click)="cancelar()">Cancelar</button>
+    </div>
+
+</nav-list-layout>
